@@ -40,22 +40,35 @@ const Cart: React.FC = () => {
 
   function handleIncrement(id: string): void {
     // TODO
+    increment(id);
   }
 
   function handleDecrement(id: string): void {
     // TODO
+    decrement(id);
   }
-
+  /*
+  https://medium.com/reactbrasil/react-usememo-na-pr%C3%A1tica-692110771c01
+  O que é useMemo /\
+  */
   const cartTotal = useMemo(() => {
     // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+    let valorTotalCarrinho = 0;
+    products.forEach(element => {
+      valorTotalCarrinho += element.quantity * element.price;
+    });
 
-    return formatValue(0);
+    return formatValue(valorTotalCarrinho);
   }, [products]);
 
   const totalItensInCart = useMemo(() => {
     // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+    let quantidadeCarrinho = 0;
+    products.forEach(element => {
+      quantidadeCarrinho += element.quantity;
+    });
 
-    return 0;
+    return quantidadeCarrinho;
   }, [products]);
 
   return (
